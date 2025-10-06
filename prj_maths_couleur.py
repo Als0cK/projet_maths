@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "C:\\Users\\alban\\OneDrive\\INSA\\STPI2\\P1_2\\images\\coucher-de-soleil-sur-misurina.jpg"
+image_path = "C:\\Users\\alban\\OneDrive\\INSA\\STPI2\\projet_maths\\feuilles-d-automne-colorees-transparentes.jpg"
 
 # Charger une image couleur
 A = imread(image_path).astype(float)
@@ -16,7 +16,6 @@ if A.max() <= 1.0:
 def k_max(A):
     m, n = A.shape[:2]
     return min(m, n)
-
 
 # Fonction de compression SVD pour un canal
 def compress_channel(channel, k):
@@ -62,10 +61,10 @@ def save_and_size(img, filename):
 print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
 
 img5 = approx_color_image(k_array[0])
-save_and_size(img5, "compressed_k5.jpg")
+save_and_size(img5, "compressed_couleur_k5.jpg")
 
 img20 = approx_color_image(k_array[1])
-save_and_size(img20, "compressed_k20.jpg")
+save_and_size(img20, "compressed_couleur_k20.jpg")
 
 img100 = approx_color_image(k_array[2])
-save_and_size(img100, "compressed_k100.jpg")
+save_and_size(img100, "compressed_couleur_k100.jpg")
