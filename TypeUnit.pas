@@ -2,9 +2,11 @@ unit TypeUnit;
 
 interface
 
+type TTypePiece = (Roi, Reine, Tour, Fou, Cavalier, Pion);
+
 type TCouleur = (Blanc, Noir);
 
-type TCase =
+type TCase = 
     record
         lettre: char;
         chiffre: integer;
@@ -17,14 +19,12 @@ type TPiece =
     record
         id: integer;
         couleur: TCouleur;
-        type_piece: string;
+        type_piece: TTypePiece;
         position: TCase;
         deplacee: boolean;
     end;
 
 type TPlateau = array[1..8, 'a'..'h'] of TCase;
-
-
 
 implementation
 
