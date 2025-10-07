@@ -1,25 +1,18 @@
 program Echec;
 
 uses TypeUnit;
+uses Initialisation;
+uses Affichage;
 
-var
-  Plateau: TPlateau;
-  begin
-  writeln('_____________________');
-  writeln('|♜ ♞ ♝ ♚ ♛ ♝ ♞ ♜ |');
-  writeln('|♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ |');
-  writeln('|■ □ ■ □ ■ □ ■ □ |');
-  writeln('|□ ■ □ ■ □ ■ □ ■ |');
-  writeln('|■ □ ■ □ ■ □ ■ □ |');
-  writeln('|□ ■ □ ■ □ ■ □ ■ |');
-  writeln('|♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ |');
-  writeln('|♖ ♘ ♗ ♔ ♕ ♗ ♘ ♖ |');
-  writeln('_____________________');
-  writeln('|♟ ♟ |');
-  writeln('_____________________');
+
+var 
+    Plateau: TPlateau;
+    Pieces: array[1..32] of TPiece;
+    PiecesMangees: TPieceMangee;
+    nbPiecesMangees: integer;
   
-  writeln('BRAVO MON GARS ! T AS GAGNER')
-end.
+
 begin
-  writeln('coucou')
+  AfficherPlateau(Plateau);
+  AfficherPiecesMangees(PiecesMangees, nbPiecesMangees);
 end.

@@ -26,6 +26,8 @@ type TPiece =
 
 type TPlateau = array[1..8, 'a'..'h'] of TCase;
 
+type TPieceMangee = array[1..32] of TPiece;
+
 implementation
 
 end.
