@@ -2,21 +2,29 @@ unit TypeUnit;
 
 interface
 
-type
-  TPieceType = (Vide, Roi, Dame, Tour, Fou, Cavalier, Pion);
-  TCouleur = (Aucun, Blanc, Noir);
+type TCouleur = (Blanc, Noir);
 
-  TCase = record
-    Piece: TPieceType;
-    Couleur: TCouleur;
-  end;
+type TCase =
+    record
+        lettre: char;
+        chiffre: integer;
+        couleur: TCouleur;
+        occupee: boolean;
+        id_piece: integer;
+    end;
 
-  TPosition = record
-    Ligne: Integer; // 1..8
-    Colonne: Integer; // 1..8
-  end;
+type TPiece =
+    record
+        id: integer;
+        couleur: TCouleur;
+        type_piece: string;
+        position: TCase;
+        deplacee: boolean;
+    end;
 
-  TPlateau = array[1..8, 1..8] of TCase;
+type TPlateau = array[1..8, 'a'..'h'] of TCase;
+
+
 
 implementation
 
