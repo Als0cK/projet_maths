@@ -33,4 +33,8 @@ def construire_M(A, k):
         A = np.rot90(A)
 
     U, V, singular_values = calcul_U_V(A, k)
-    return np.rot90(np.clip(U @ construire_sigma(singular_values, A, k) @ V.T, 0, 255), -1)
+
+    if n < m:
+        return np.rot90(np.clip(U @ construire_sigma(singular_values, A, k) @ V.T, 0, 255), -1)
+    else:
+        return np.clip(U @ construire_sigma(singular_values, A, k) @ V.T, 0, 255)
