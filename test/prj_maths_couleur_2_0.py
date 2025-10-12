@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "C:\\Users\\Alban\\OneDrive\\INSA\\STPI2\\projet_maths\\test\\pexels-maxfrancis-2246476.jpg"
+image_path = "test/test.jpg"
 
 # Charger une image couleur
 A = imread(image_path).astype(float)
@@ -17,6 +17,8 @@ if A.max() <= 1.0:
 def k_max(A):
     m, n = A.shape[:2]
     return min(m, n)
+
+print(k_max(A))
 
 # Compression couleur
 def approx_color_image(k):

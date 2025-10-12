@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "C:\\Users\\Alban\\OneDrive\\INSA\\STPI2\\projet_maths\\test\\pexels-maxfrancis-2246476.jpg"
+image_path = "test/pexels-maxfrancis-2246476.jpg"
 
 # Charger une image
 A = imread(image_path).astype(float)

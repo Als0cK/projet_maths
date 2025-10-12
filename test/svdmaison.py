@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.image import imread
 
 def calcul_U_V(A, k):
     taille = max(np.shape(A))
@@ -9,6 +7,8 @@ def calcul_U_V(A, k):
     index_sort = np.argsort(eigenvalues)[::-1]
     eigenvalues = eigenvalues[index_sort]
     U = U[:, index_sort]
+
+    eigenvalues = np.maximum(eigenvalues, 0)
 
     singular_values = np.sqrt(eigenvalues)
 
@@ -28,5 +28,9 @@ def construire_sigma(singular_values, A, k):
     return sigma
 
 def construire_M(A, k):
+    m, n = A.shape[:2]
+    if n < m:
+        A = np.rot90(A)
+
     U, V, singular_values = calcul_U_V(A, k)
-    return np.clip(U @ construire_sigma(singular_values, A, k) @ V.T, 0, 255) # force dans [0,255]
+    return np.rot90(np.clip(U @ construire_sigma(singular_values, A, k) @ V.T, 0, 255), -1)
