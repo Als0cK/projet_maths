@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "C:\\Users\\alban\\OneDrive\\INSA\\STPI2\\projet_maths\\test\\test.jpg"
+image_path = "..\\projet_maths\\test\\test.jpg"
 
 # Charger une image couleur
 A = imread(image_path).astype(float)
