@@ -1,4 +1,3 @@
-from prj_maths_3_0.prj_maths_3_0 import approx_image
 import svdmaison as svd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -42,7 +41,7 @@ def affichage_images():
     k_array = [1, 20, k_max(A)]
 
     for i, k in enumerate(k_array, start=2):
-        img_k = approx_image(k)
+        img_k = svd.construire_M(A, k)
         plt.subplot(1,4,i)
         plt.imshow(img_k, cmap="gray")
         plt.title(f"k={k}")
