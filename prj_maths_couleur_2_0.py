@@ -25,38 +25,38 @@ def approx_color_image(k):
     B = svd.construire_M(A[:,:,2], k)
     return np.stack([R, G, B], axis=2)
 
-# Affichage
-plt.figure(figsize=(12,6))
-
-plt.subplot(1,4,1)
-plt.imshow(A.astype(np.uint8))
-plt.title("Originale")
-plt.axis("off")
-
-k_array = [1, 20, k_max(A)]
-
-for i, k in enumerate(k_array, start=2):
-    img_k = approx_color_image(k)
-    plt.subplot(1,4,i)
-    plt.imshow(img_k.astype(np.uint8))
-    plt.title(f"k={k}")
-    plt.axis("off")
-
-plt.show()
-
 # Sauvegarde et taille des fichiers
 def save_and_size(img, filename):
     plt.imsave(filename, img.astype(np.uint8))
     size_bytes = os.path.getsize(filename)
     print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets)")
 
-print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
+def save_compressed_images():
+    for k in [3, 20, k_max(A)]:
+        img_k = approx_color_image(k)
+        filename = f"compressed_k{k}.jpg"
+        save_and_size(img_k, filename)
 
-img5 = approx_color_image(k_array[0])
-save_and_size(img5, "compressed_couleur_k5.jpg")
+def affichage_images():
+    plt.figure(figsize=(12,6))
 
-img20 = approx_color_image(k_array[1])
-save_and_size(img20, "compressed_couleur_k20.jpg")
+    plt.subplot(1,4,1)
+    plt.imshow(A.astype(np.uint8))
+    plt.title("Originale")
+    plt.axis("off")
 
-img100 = approx_color_image(k_array[2])
-save_and_size(img100, "compressed_couleur_k100.jpg")
+    k_array = [1, 20, k_max(A)]
+
+    for i, k in enumerate(k_array, start=2):
+        img_k = approx_color_image(k)
+        plt.subplot(1,4,i)
+        plt.imshow(img_k.astype(np.uint8))
+        plt.title(f"k={k}")
+        plt.axis("off")
+
+def main():
+    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
+    affichage_images()
+    save_compressed_images()
+
+main()

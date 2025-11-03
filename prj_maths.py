@@ -35,34 +35,34 @@ def save_and_size(img, filename):
     size_bytes = os.path.getsize(filename)
     print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets)")
 
+def affichage_images():
+    plt.figure(figsize=(12,6))
 
-plt.figure(figsize=(12,6))
-
-plt.subplot(1,4,1)
-plt.imshow(A, cmap="gray")
-plt.title("Originale")
-plt.axis("off")
-
-k_array = [1, 20, k_max(A)]
-
-for i, k in enumerate(k_array, start=2):
-    img_k = approx_image(k)
-    plt.subplot(1,4,i)
-    plt.imshow(img_k, cmap="gray")
-    plt.title(f"k={k}")
+    plt.subplot(1,4,1)
+    plt.imshow(A, cmap="gray")
+    plt.title("Originale")
     plt.axis("off")
 
-plt.show()
+    k_array = [1, 20, k_max(A)]
 
-# Sauvegarde
-print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko "
-      f"({os.path.getsize(image_path)} octets)")
+    for i, k in enumerate(k_array, start=2):
+        img_k = approx_image(k)
+        plt.subplot(1,4,i)
+        plt.imshow(img_k, cmap="gray")
+        plt.title(f"k={k}")
+        plt.axis("off")
 
-img3 = approx_image(3)
-save_and_size(img3, "compressed_k3.jpg")
+    plt.show()
 
-img20 = approx_image(20)
-save_and_size(img20, "compressed_k20.jpg")
+def save_compressed_images():
+    for k in [3, 20, k_max(A)]:
+        img_k = approx_image(k)
+        filename = f"compressed_k{k}.jpg"
+        save_and_size(img_k, filename)
 
-img_full = approx_image(k_max(A))
-save_and_size(img_full, "compressed_k_max.jpg")
+def main():
+    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
+    affichage_images()
+    save_compressed_images()
+
+main()

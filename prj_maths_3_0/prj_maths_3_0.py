@@ -1,6 +1,5 @@
-from prj_maths_3_0.prj_maths_3_0 import approx_image
-import svdmaison as svd
 import numpy as np
+import asyncio
 import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
@@ -19,19 +18,25 @@ def k_max(A):
     m, n = A.shape[:2]
     return min(m, n)
 
+# Calcul de la SVD
+U, S, Vt = np.linalg.svd(A, full_matrices=False)
+
+# Fonction d’approximation
+def approx_image(k):
+    Uk = U[:, :k]
+    Sk = np.diag(S[:k])
+    Vk = Vt[:k, :]
+    img = Uk @ Sk @ Vk
+    return np.clip(img, 0, 255)  # force dans [0,255]
+
+
 # Sauvegarde et taille des fichiers
 def save_and_size(img, filename):
     plt.imsave(filename, img, cmap="gray")
     size_bytes = os.path.getsize(filename)
     print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets)")
 
-def save_compressed_images():
-    for k in [3, 20, k_max(A)]:
-        img_k = svd.construire_M(A, k)
-        filename = f"compressed_k{k}.jpg"
-        save_and_size(img_k, filename)
-
-def affichage_images():
+async def affichage_images():
     plt.figure(figsize=(12,6))
 
     plt.subplot(1,4,1)
@@ -49,9 +54,16 @@ def affichage_images():
         plt.axis("off")
     plt.show()
 
-def main():
-    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
-    affichage_images()
-    save_compressed_images()
 
-main()
+async def save_compressed_images():
+    for k in [3, 20, k_max(A)]:
+        img_k = approx_image(k)
+        filename = f"compressed_k{k}.jpg"
+        save_and_size(img_k, filename)
+
+async def main():
+    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
+    asyncio.create_task(affichage_images())
+    asyncio.create_task(save_compressed_images())
+
+asyncio.run(main())
