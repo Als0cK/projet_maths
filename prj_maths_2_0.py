@@ -52,6 +52,6 @@ def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
     affichage_images()
     save_compressed_images()
-    input("Appuyez sur une touche pour quitter...")
+    input("Appuyez sur entrée pour quitter...")
 
 main()
