@@ -22,7 +22,7 @@ def k_max(A):
 def save_and_size(img, filename):
     plt.imsave(filename, img, cmap="gray")
     size_bytes = os.path.getsize(filename)
-    print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets)")
+    print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets), réduction de {(1 - size_bytes/os.path.getsize(image_path))*100:.2f} %")
 
 def save_compressed_images():
     for k in [3, 20, k_max(A)]:

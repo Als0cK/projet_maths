@@ -33,7 +33,7 @@ def approx_image(k):
 def save_and_size(img, filename):
     plt.imsave(filename, img, cmap="gray")
     size_bytes = os.path.getsize(filename)
-    print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets)")
+    print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets), réduction de {(1 - size_bytes/os.path.getsize(image_path))*100:.2f} %")
 
 def affichage_images():
     plt.figure(figsize=(12,6))
