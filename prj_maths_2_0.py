@@ -46,11 +46,12 @@ def affichage_images():
         plt.imshow(img_k, cmap="gray")
         plt.title(f"k={k}")
         plt.axis("off")
-    plt.show()
+    plt.show(block = False)
 
 def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
     affichage_images()
     save_compressed_images()
+    input("Appuyez sur une touche pour quitter...")
 
 main()

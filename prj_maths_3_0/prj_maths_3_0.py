@@ -52,7 +52,7 @@ async def affichage_images():
         plt.imshow(img_k, cmap="gray")
         plt.title(f"k={k}")
         plt.axis("off")
-    plt.show()
+    plt.show(block = False)
 
 
 async def save_compressed_images():

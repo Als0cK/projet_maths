@@ -52,7 +52,7 @@ def affichage_images():
         plt.title(f"k={k}")
         plt.axis("off")
 
-    plt.show()
+    plt.show(block = False)
 
 def save_compressed_images():
     for k in [3, 20, k_max(A)]:
@@ -64,5 +64,6 @@ def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
     affichage_images()
     save_compressed_images()
+    input("Appuyez sur une touche pour quitter...")
 
 main()

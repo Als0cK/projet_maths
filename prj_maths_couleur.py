@@ -50,7 +50,7 @@ def affichage_images():
         plt.imshow(img_k.astype(np.uint8))
         plt.title(f"k={k}")
         plt.axis("off")
-    plt.show()
+    plt.show(block = False)
 
 
 # Sauvegarde et taille des fichiers
@@ -69,5 +69,6 @@ def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
     affichage_images()
     save_compressed_images()
+    input("Appuyez sur une touche pour quitter...")
 
 main()
