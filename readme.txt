@@ -35,6 +35,7 @@ Ajuster la compression
 Changer l image source
 ----------------------
 - Remplacer `coucher-de-soleil-sur-misurina.jpg` par une autre image dans le meme dossier.
+- Les images au format portait et paysage sont supportees.
 - Assurer que le nom du fichier dans le script correspond a celui de l image remplacee.
 
 Conseils
@@ -42,3 +43,4 @@ Conseils
 - Ne pas utiliser une image trop grande pour eviter une longue duree de calcul, le processus SVD peut etre gourmand en ressources.
 - Tester avec differentes valeurs de k pour trouver le compromis ideal entre qualite et taille de fichier.
 - Consulter les commentaires dans les scripts pour plus de details sur le fonctionnement interne.
+- Deux autres images sont disponibles, ne vous aventurez pas dans la compression de 'pexels-maxfrancis-2246476.jpg' sans vous assurer d'avoir une machine pouvant encaisser le calcul, cette image est tres lourde.
