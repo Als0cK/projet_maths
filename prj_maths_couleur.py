@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "..\\projet_maths\\coucher-de-soleil-sur-misurina.jpg"
+image_path = "coucher-de-soleil-sur-misurina.jpg"
 
 # Charger une image couleur
 A = imread(image_path).astype(float)
@@ -42,8 +42,6 @@ def affichage_images():
     plt.title("Originale")
     plt.axis("off")
 
-    k_array = [1, 20, k_max(A)]
-
     for i, k in enumerate(k_array, start=2):
         img_k = approx_color_image(k)
         plt.subplot(1,4,i)
@@ -60,10 +58,12 @@ def save_and_size(img, filename):
     print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets), réduction de {(1 - size_bytes/os.path.getsize(image_path))*100:.2f} %")
 
 def save_compressed_images():
-    for k in [3, 20, k_max(A)]:
+    for k in k_array:
         img_k = approx_color_image(k)
         filename = f"compressed_couleur_k{k}.jpg"
         save_and_size(img_k, filename)
+
+k_array = [3, 20, k_max(A)]
 
 def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "..\\projet_maths\\coucher-de-soleil-sur-misurina.jpg"
+image_path = "coucher-de-soleil-sur-misurina.jpg"
 
 # Charger une image
 A = imread(image_path).astype(float)
@@ -43,8 +43,6 @@ def affichage_images():
     plt.title("Originale")
     plt.axis("off")
 
-    k_array = [1, 20, k_max(A)]
-
     for i, k in enumerate(k_array, start=2):
         img_k = approx_image(k)
         plt.subplot(1,4,i)
@@ -55,10 +53,12 @@ def affichage_images():
     plt.show(block = False)
 
 def save_compressed_images():
-    for k in [3, 20, k_max(A)]:
+    for k in k_array:
         img_k = approx_image(k)
         filename = f"compressed_k{k}.jpg"
         save_and_size(img_k, filename)
+
+k_array = [1, 20, k_max(A)]
 
 def main():
     print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
