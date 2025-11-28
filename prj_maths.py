@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
-image_path = "coucher-de-soleil-sur-misurina.jpg"
+image_path = ".\\coucher-de-soleil-sur-misurina.jpg"
 
 # Charger une image
 A = imread(image_path).astype(float)
