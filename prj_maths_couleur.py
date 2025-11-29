@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import os
 
+# variable image source
 image_path = ".\\coucher-de-soleil-sur-misurina.jpg"
 
 # Charger une image couleur
@@ -33,7 +34,7 @@ def approx_color_image(k):
     # On recolle les canaux et on force dans [0,255]
     return np.clip(np.stack([R, G, B], axis=2), 0, 255)
 
-
+# Fonction d’affichage des images
 def affichage_images():
     plt.figure(figsize=(12,6))
 
@@ -57,18 +58,20 @@ def save_and_size(img, filename):
     size_bytes = os.path.getsize(filename)
     print(f"{filename} : {size_bytes/1024:.2f} Ko ({size_bytes} octets), réduction de {(1 - size_bytes/os.path.getsize(image_path))*100:.2f} %")
 
+# Fonction de sauvegarde des images compressées
 def save_compressed_images():
     for k in k_array:
         img_k = approx_color_image(k)
         filename = f"compressed_couleur_k{k}.jpg"
         save_and_size(img_k, filename)
 
+# Tableau des valeurs de k à tester
 k_array = [3, 20, k_max(A)]
 
 def main():
-    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)")
-    affichage_images()
-    save_compressed_images()
+    print(f"Originale : {os.path.getsize(image_path)/1024:.2f} Ko ({os.path.getsize(image_path)} octets)") #affiche la taille de l’image originale
+    affichage_images() #affiche les images compressées
+    save_compressed_images() #sauvegarde les images compressées
     input("Appuyez sur entrée pour quitter...")
 
 main()
